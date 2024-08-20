@@ -1,0 +1,9 @@
+.navbar-display{
+    background-color: violet;
+}
+.navbar-display ul{
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+    list-style: none;
+}
