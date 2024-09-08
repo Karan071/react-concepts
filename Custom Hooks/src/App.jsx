@@ -1,27 +1,23 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Todo from './Components/Todo'
+import useDataFetch from './Hooks/useDataFetch'
 
 function App() {
-  const [todos, setTodos] = useState([])
-
-  useEffect(() => {
-    axios.get("https://jsonplaceholder.typicode.com/todos")
-      .then((response) => {
-        setTodos(response.data)
-      })
-  }, [])
+  const {todos,loading} = useDataFetch();
 
   return (
     <>
       <div>
-        {todos.map((todo) => (
-          todo.id % 2 == 0 && todo.id > 20 && todo.id < 60 ? <Todo key={todo.id} todo={todo} /> : ""
-        ))}
+      {loading 
+          ? "Loading !!" 
+          : todos.map((item) => (  // Used 'todo' instead of 'todos'
+            <Todo key={item.id} todo={item} /> // Proper JSX return
+          ))
+        }
       </div>
     </>
   )
 }
-
 
 export default App
