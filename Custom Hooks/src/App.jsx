@@ -1,20 +1,14 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
 import Todo from './Components/Todo'
 import useDataFetch from './Hooks/useDataFetch'
+import Loading from './Components/Loading';
 
-function App() {
-  const {todos,loading} = useDataFetch();
+function App(n) {
+  const {todos,loading} = useDataFetch(5);
 
   return (
     <>
       <div>
-      {loading 
-          ? "Loading !!" 
-          : todos.map((item) => (  // Used 'todo' instead of 'todos'
-            <Todo key={item.id} todo={item} /> // Proper JSX return
-          ))
-        }
+      { loading ? <Loading/> : todos.map((item) => (<Todo key={item.id} todo={item} />)) }
       </div>
     </>
   )
